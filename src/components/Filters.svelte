@@ -28,9 +28,12 @@
         })
     }
 
-    function toggleCategoryItem(item) {
-        item.selected = !item.selected;
-        overallCategoryItems = overallCategoryItems //update assignment
+    function toggleCategoryItem(selectedItem) {
+        //select one category in the “Categories” section at a time
+        overallCategoryItems = overallCategoryItems.map(item => {
+            selectedItem.name === item.name ? item.selected = true : item.selected = false;
+            return item;
+        })
     }
 
     //logic for option filters  - todo: move to it's own comp
