@@ -1,7 +1,6 @@
 <script>
     import {onMount} from 'svelte'
     import {mapView, data, details, filters} from '../stores'
-    import getIcons from '../utils/getIcons'
 
     let container
     let map
@@ -9,7 +8,7 @@
 
     function generateLayer(data, filter = () => true){
         return L.geoJSON(data, {
-            pointToLayer: (feature, latlng) => getIcons(feature.properties.overallcategory, feature.properties.subcategory, latlng),
+            pointToLayer: feature => feature.properties.icon,
             onEachFeature: (feature, layer) => {
                 const {merchantname, overallcategory} = feature.properties
                 layer.bindPopup(`<p><strong>${merchantname}</strong></p><p>${overallcategory}</p>`)

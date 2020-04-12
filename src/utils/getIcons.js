@@ -7,15 +7,11 @@ export default function(overallcategory, subcategory, latlng){
         iconColor: '#ffffff',
         markerColor: 'rgba(64,134,241,0.8)',
         outlineColor: 'rgba(77,77,77,0.71)',
-        outlineWidth: 0.5
+        outlineWidth: 0.5,
+        popupAnchor: [0, -30]
     });
     return L.marker(latlng, {icon})
 }
-
-// export default function(overallcategory, subcategory, latlng){
-//     const icon = L.MakiMarkers.icon({icon: typeIconLookup(overallcategory, subcategory), color: "#237aaf", size: "m"});
-//     return L.marker(latlng, {icon: icon})
-// }
 
 function typeIconLookup(cat, subcat){
     //todo - refactor :)

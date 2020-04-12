@@ -2,6 +2,7 @@
     import {onMount} from 'svelte'
     import {data} from './stores'
     import 'bulma/css/bulma.css'
+    import loadFeatures from './utils/loadFeatures'
 
     import Footer from './components/Footer.svelte'
     import MapView from './components/MapView.svelte'
@@ -13,38 +14,26 @@
         (async () => {
             // Load the data from the Drive Spreadsheet
             const db = await drive("1Z3pNCmtJhVNwo_tJDnb1i_qAsxYEglRPN9lztTATIVM");
-            const features = db.map(feature => ( {
-                "type": "Feature",
-                "properties": feature,
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        +feature.longitude,
-                        +feature.latitude,
-                    ]
-                }
-            }))
-
-            data.set({"type": "FeatureCollection", features})
+            data.set({"type": "FeatureCollection", features: loadFeatures(db)})
         })();
     })
 </script>
 
 <main>
-        <Filters/>
-        <div class="panel">
-            <div class="panel-left">
-                {#if !$data}
-                    <LoadingIndicator/>
-                {:else}
-                    <Details/>
-                {/if}
-            </div>
-            <div class="panel-right">
-                <MapView />
-            </div>
+    <Filters/>
+    <div class="panel">
+        <div class="panel-left">
+            {#if !$data}
+                <LoadingIndicator/>
+            {:else}
+                <Details/>
+            {/if}
         </div>
-<!--        <Footer/>-->
+        <div class="panel-right">
+            <MapView/>
+        </div>
+    </div>
+    <!--        <Footer/>-->
 </main>
 
 <style>
@@ -55,18 +44,18 @@
         padding: 0 10px;
     }
 
-    .panel{
+    .panel {
         display: flex;
         flex-wrap: wrap;
         min-height: 600px;
     }
 
-    .panel-left{
+    .panel-left {
         flex: 1 1 300px;
         padding: 1rem;
     }
 
-    .panel-right{
+    .panel-right {
         flex: 1 1 340px;
         min-width: 340px;
         min-height: 500px;
@@ -76,8 +65,8 @@
         font-family: 'Merriweather', serif;
     }
 
-    .info{
-        padding: 0.5rem 1rem ;
+    .info {
+        padding: 0.5rem 1rem;
         margin-bottom: 1rem;
     }
 
