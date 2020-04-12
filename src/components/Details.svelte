@@ -2,7 +2,6 @@
     import {details} from '../stores'
     import getValidUrl from '../utils/getValidUrl'
 
-
 </script>
 
 {#if $details}
@@ -13,7 +12,8 @@
         <p><strong>Address:</strong> {$details.address}</p>
         <p><strong>#:</strong> <a href="tel:{$details.number}" class="">{$details.number}</a></p>
         {#if $details.websiteownerrundeliverypreferred}
-            <p><strong><a href="{getValidUrl($details.websiteownerrundeliverypreferred)}" target="_blank">Website</a></strong> </p>
+            <p><strong><a href="{getValidUrl($details.websiteownerrundeliverypreferred)}"
+                          target="_blank">Website</a></strong></p>
         {/if}
         <hr/>
         <h5 class="is-5">Hours</h5>
@@ -57,12 +57,13 @@
                 <div class="tags">
                     {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization}
                         <a href="{$details.buyagiftcardtosupportyourfavoriteevmerchantorganization}"><span
-                                class="tag is-link">Buy a GIFTCARD to support your favorite EV merchant/org!</span></a>
+                                class="tag is-link">Buy a GIFTCARD to support this business!</span></a>
                     {/if}
 
                     {#if $details.supportyourfavoriteevmerchantorganizationsfundraiser}
-                        <a href="{$details.supportyourfavoriteevmerchantorganizationsfundraiser}"><span
-                                class="tag is-link">Support your favorite EV merchant/org's FUNDRAISER!</span></a>
+                        <a hremail
+                           f="{$details.supportyourfavoriteevmerchantorganizationsfundraiser}"><span
+                                class="tag is-link">Contribute to this business's FUNDRAISER</span></a>
                     {/if}
                 </div>
             </div>
@@ -73,7 +74,9 @@
 
         <p class="has-text-grey-light">Last Updated: {$details.dateupdated} ID: {$details.id}</p>
         {#if $details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}
-            <p>Source: <a href="{$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}">Click here</a></p>
+            <p>Source: <a
+                    href="{$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}">Click
+                here</a></p>
         {/if}
     </div>
 {:else}
