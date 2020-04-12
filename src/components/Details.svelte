@@ -1,6 +1,7 @@
 <script>
     import {details} from '../stores'
     import getValidUrl from '../utils/getValidUrl'
+    import {formatPhoneNumber} from '../utils/textFormating'
 
 </script>
 
@@ -10,7 +11,7 @@
         <p><strong>{$details.overallcategory}</strong> - {$details.subcategory}</p>
         <hr/>
         <p><strong>Address:</strong> {$details.address}</p>
-        <p><strong>#:</strong> <a href="tel:{$details.number}" class="">{$details.number}</a></p>
+        <p><strong>#:</strong> <a href="tel:{formatPhoneNumber($details.number)}" class="">{formatPhoneNumber($details.number)}</a></p>
         {#if $details.websiteownerrundeliverypreferred}
             <p><strong><a href="{getValidUrl($details.websiteownerrundeliverypreferred)}"
                           target="_blank">Website</a></strong></p>
