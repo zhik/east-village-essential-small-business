@@ -1,5 +1,5 @@
 //from https://stackoverflow.com/questions/11300906/check-if-a-string-starts-with-http-using-javascript
-export default function(url = ""){
+export function getValidUrl(url = ""){
     let newUrl = window.decodeURIComponent(url);
     newUrl = newUrl.trim().replace(/\s/g, "");
 
@@ -12,3 +12,11 @@ export default function(url = ""){
 
     return newUrl;
 };
+
+export function getValidInstagram(url = ""){
+    const pattern = /(instagram\.com|Instagram.com)/;
+    if(!pattern.test(url)) {
+        return getValidUrl(`https://www.instagram.com/${url}`)
+    }
+    return getValidUrl(url)
+}
