@@ -11,3 +11,8 @@ export function formatPhoneNumber(phoneNumberString){
     }
     return phoneNumberString
 }
+
+export function sanitizeString(str = ''){
+    //todo - make better
+    return str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+}

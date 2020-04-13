@@ -1,28 +1,42 @@
 <script>
-    import { mapView, data, details } from '../stores'
+    import {mapView, data, details} from '../stores'
+    import SearchItem from './search/SearchItem.svelte'
+    import Fuse from 'fuse.js'
+
     export let textSearch = ''
     let value = ''
     let searchAddrs = []
     let error = false
     let features = []
+    let fuse = null
 
-    $: if($data && $data.features){
+    $: if ($data && $data.features) {
         features = $data.features.sort((a, b) => a.properties.merchantname.localeCompare(b.properties.merchantname))
+        fuse = new Fuse(features, {
+            isCaseSensitive: false,
+            includeMatches: true,
+            minMatchCharLength: 1,
+            threshold: 0.4,
+            keys: [
+                "properties.merchantname",
+                "properties.overallcategory",
+                "properties.subcategory"
+            ]
+        });
     }
 
     let markerLayer = null;
 
     function _set(addr) {
         //set value to clicked addr , then clear searchAddrs
-        if (addr) value = addr.properties.merchantname
+        if (addr) value = addr.item.properties.merchantname
         searchAddrs = []
-
-        const coords = addr.geometry.coordinates.slice().reverse() // reverse no side-effects
+        const coords = addr.item.geometry.coordinates.slice().reverse() // reverse no side-effects
         $mapView.setView(coords, 18)
-        details.set(addr.properties)
+        details.set(addr.item.properties)
 
         //add marker to map
-        if(!markerLayer){
+        if (!markerLayer) {
             markerLayer = L.circleMarker(coords, {
                 radius: 15,
                 fillColor: "#f7ff45",
@@ -32,17 +46,16 @@
                 fillOpacity: 0.8
             });
             markerLayer.addTo($mapView);
-        }else{
+        } else {
             markerLayer.setLatLng(coords)
         }
 
     }
 
     function _search() {
-        if (value.length > 0) {
-            const matchedFeatures = features.filter(feature => feature.properties.merchantname.toLowerCase().includes(value));
-            //todo: remove duplicates
-            searchAddrs = matchedFeatures.splice(0,5)
+        if (value.length > 1) {
+            const matchedFeatures = fuse.search(value);
+            searchAddrs = matchedFeatures.splice(0, 5)
         } else {
             searchAddrs = []
         }
@@ -50,7 +63,7 @@
     }
 </script>
 
-<form on:submit|preventDefault="{_set}">
+<form on:submit|preventDefault="{_set(searchAddrs[0])}">
     <div class="field is-horizontal">
         <div class="field-label is-normal">
             <label class="label">Search by name</label>
@@ -79,11 +92,13 @@
         </p>
     {/if}
 
-    <ul>
-        {#each searchAddrs as addr}
-            <li on:click="{() => _set(addr)}">{addr.properties.merchantname}</li>
-        {/each}
-    </ul>
+    {#if searchAddrs.length}
+        <ul>
+            {#each searchAddrs as addr}
+                <SearchItem {addr} on:_set={({detail}) => _set(detail)}/>
+            {/each}
+        </ul>
+    {/if}
 </form>
 
 <style>
@@ -108,16 +123,8 @@
     }
 
     ul {
-        padding-left: 10px;
         color: rgb(61, 61, 61);
         margin: 0px !important;
-    }
-
-    li {
-        margin-left: 5px;
-    }
-
-    li:hover {
-        background-color: #f1f1f1;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     }
 </style>
