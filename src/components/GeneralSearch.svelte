@@ -94,8 +94,8 @@
 
     {#if searchAddrs.length}
         <ul>
-            {#each searchAddrs as addr}
-                <SearchItem {addr} on:_set={({detail}) => _set(detail)}/>
+            {#each searchAddrs as addr (addr.refIndex)}
+                <SearchItem {addr} on:set={({detail}) => _set(detail)}/>
             {/each}
         </ul>
     {/if}

@@ -13,7 +13,7 @@
         return text.substr(0, index) + value + text.substr(index);
     }
 
-    function boldIndices(match){
+    function boldIndices(match) {
         let addedChar = 0;
         let text = match.value;
         match.indices.filter(index => index[1] - index[0] > 1).forEach(index => {
@@ -47,7 +47,7 @@
 </script>
 
 
-<li on:click="{() => dispatch('_set',addr)}">
+<li on:click="{() => dispatch('set', addr)}">
     <div class="flex-search">
         <p class="has-text-grey has-text-right">{@html sanitizeString(overallcategory)}
             - {@html sanitizeString(subcategory)}</p>
