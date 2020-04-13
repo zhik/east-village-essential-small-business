@@ -1,5 +1,6 @@
 <script>
     import {details} from '../stores'
+    import NotEmpty from './details/NotEmpty.svelte'
     import getValidUrl from '../utils/getValidUrl'
     import {formatPhoneNumber} from '../utils/textFormating'
 
@@ -10,16 +11,28 @@
         <h4 class="is-4">{$details.merchantname}</h4>
         <p><strong>{$details.overallcategory}</strong> - {$details.subcategory}</p>
         <hr/>
-        <p><strong>Address:</strong> {$details.address}</p>
-        <p><strong>#:</strong> <a href="tel:{formatPhoneNumber($details.number)}" class="">{formatPhoneNumber($details.number)}</a></p>
-        {#if $details.websiteownerrundeliverypreferred}
+
+        <NotEmpty value={$details.address}>
+            <p><strong>Address:</strong> {$details.address}</p>
+        </NotEmpty>
+
+
+        <NotEmpty value={$details.number}>
+            <p><strong>#:</strong> <a href="tel:{formatPhoneNumber($details.number)}"
+                                      class="">{formatPhoneNumber($details.number)}</a></p>
+        </NotEmpty>
+
+        <NotEmpty value={$details.websiteownerrundeliverypreferred}>
             <p><strong><a href="{getValidUrl($details.websiteownerrundeliverypreferred)}"
                           target="_blank">Website</a></strong></p>
-        {/if}
+        </NotEmpty>
+
         <hr/>
-        <h5 class="is-5">Hours</h5>
-        <p><strong>Open Time:</strong> {$details.opentime}</p>
-        <p><strong>Close Time:</strong> {$details.closetime}</p>
+        <NotEmpty show={$details.opentime && $details.closetime}>
+            <h5 class="is-5">Hours</h5>
+            <p><strong>Open Time:</strong> {$details.opentime}</p>
+            <p><strong>Close Time:</strong> {$details.closetime}</p>
+        </NotEmpty>
 
         <div class="field is-grouped is-grouped-multiline">
             <div class="control">
@@ -31,6 +44,7 @@
                 </div>
             </div>
 
+
             <div class="control">
                 <div class="tags has-addons">
                     <span class="tag">Delivery</span>
@@ -40,17 +54,22 @@
                 </div>
             </div>
 
-            <div class="control">
-                <div class="tags has-addons">
-                    <span class="tag">Shipping</span>
-                    <span class="tag {$details.shippingyorn === 'Y'  ? 'is-success' : 'is-white'}">
+            <NotEmpty value={$details.shippingyorn} show={$details.shippingyorn === 'Y'}>
+                <div class="control">
+                    <div class="tags has-addons">
+                        <span class="tag">Shipping</span>
+                        <span class="tag {$details.shippingyorn === 'Y'  ? 'is-success' : 'is-white'}">
                         {$details.shippingyorn === 'Y' ? 'Yes' : '-'}
                     </span>
+                    </div>
                 </div>
-            </div>
+            </NotEmpty>
         </div>
 
-        <p><strong>Notes: </strong>{$details.notes}</p>
+
+        <NotEmpty value={$details.notes}>
+            <p><strong>Notes: </strong>{$details.notes}</p>
+        </NotEmpty>
 
         {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization || $details.supportyourfavoriteevmerchantorganizationsfundraiser}
             <hr>
@@ -64,21 +83,20 @@
                     {#if $details.supportyourfavoriteevmerchantorganizationsfundraiser}
                         <a hremail
                            f="{$details.supportyourfavoriteevmerchantorganizationsfundraiser}"><span
-                                class="tag is-link">Contribute to this business's FUNDRAISER</span></a>
+                                class="tag is-link">Contribute to this business's FUNDRAISER!</span></a>
                     {/if}
                 </div>
             </div>
-
         {/if}
 
         <hr>
 
         <p class="has-text-grey-light">Last Updated: {$details.dateupdated} ID: {$details.id}</p>
-        {#if $details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}
+        <NotEmpty value={$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}>
             <p>Source: <a
                     href="{$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}">Click
                 here</a></p>
-        {/if}
+        </NotEmpty>
     </div>
 {:else}
     <div class="content has-background-ter">
