@@ -6,6 +6,7 @@
     export let name = ''
     export let categories = [];
     export let showAfter = 0;
+    export let customColors = null;
 
     //have allCategories be true only if everything else is false
     $: allCategories = categories.every(item => !item.selected)
@@ -28,6 +29,13 @@
         dispatch('update', updatedCategories)
     }
 
+    function getCustomColor(item) {
+        return `
+            border-bottom: 5px solid ${item.selected ? customColors[item.name.toLowerCase()].selectedColor : customColors[item.name.toLowerCase()].color};
+        `
+    }
+
+
 </script>
 
 
@@ -38,8 +46,14 @@
 
     <div class="filter-container">
         {#each categories as item, name}
-            <button class="button is-small {item.selected ? 'is-info' : ''}"
-                    on:click={toggleCategoryItem(item)}>{item.name}</button>
+            {#if customColors}
+                <button class="button is-small"
+                        style={getCustomColor(item)}
+                        on:click={toggleCategoryItem(item)}>{item.name}</button>
+            {:else}
+                <button class="button is-small {item.selected ? 'is-info' : ''}"
+                        on:click={toggleCategoryItem(item)}>{item.name}</button>
+            {/if}
         {/each}
     </div>
 {/if}

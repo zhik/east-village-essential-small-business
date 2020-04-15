@@ -1,53 +1,83 @@
-import 'leaflet-iconmaterial/dist/leaflet.icon-material'
-import 'leaflet-iconmaterial/dist/leaflet.icon-material.css'
+import ICONS from './icons'
 
-export default function(overallcategory, subcategory, latlng){
-    const icon = L.IconMaterial.icon({
-        icon: typeIconLookup(overallcategory, subcategory),
-        iconColor: '#ffffff',
-        markerColor: 'rgba(64,134,241,0.8)',
-        outlineColor: 'rgba(77,77,77,0.71)',
-        outlineWidth: 0.5,
-        popupAnchor: [0, -30]
-    });
+const defaultIconOptions = {
+    shadowUrl: './icons/shadow.png',
+    iconSize:     [32, 37], // size of the icon
+    shadowSize:   [51 ,37], // size of the shadow
+    iconAnchor:   [32, 37], // point of the icon which will correspond to marker's location
+    shadowAnchor: [32, 37],  // the same for the shadow
+    popupAnchor:  [-16, -10] // point from which the popup should open relative to the iconAnchor
+}
+
+const CUSTOM_ICONS = ICONS.map(icon => {
+    return {
+        overallcategory: icon[0],
+        subcategory: icon[1],
+        iconName: icon[2],
+        icon: L.icon({
+            iconUrl: `./icons/${icon[2]}.png`,
+            ...defaultIconOptions
+        })
+    }
+})
+
+export default function(overall, sub, latlng){
+    const icon = iconLookup(overall, sub)
     return L.marker(latlng, {icon})
 }
 
-function typeIconLookup(cat, subcat){
-    //todo - refactor :)
-    const text = cat.trim().toLowerCase();
-    const text2 = subcat.trim().toLowerCase()
 
-    //restaurant
-    if(text.includes('food') || text.includes('restaurant')){
-        if(text2.includes('pizza')) return 'local_pizza'
-        if(text2.includes(('burger'))) return 'fast_food'
-        return 'restaurant_menu'
+
+function iconLookup(overall, sub){
+    let iconMatch = null;
+
+    const overall_lower = overall.trim().toLowerCase();
+    const sub_lower = sub.trim().toLowerCase()
+
+    const match = CUSTOM_ICONS.find(icon => icon.overallcategory === overall_lower && icon.subcategory === sub_lower)
+
+    if(match){
+        return match.icon
     }
 
-    //med
-    if(text.includes('health')) {
-        if(text2.includes('pharmacy')) return 'local_pharmacy'
-        return 'spa'
+    //default icons
+    if(!iconMatch){
+        switch(overall_lower){
+            case 'dessert':
+                return L.icon({
+                    iconUrl: './icons/patisserie.png',
+                    ...defaultIconOptions
+                })
+            case 'groceries':
+                return L.icon({
+                    iconUrl: './icons/supermarket.png',
+                    ...defaultIconOptions
+                })
+            case 'health':
+                return L.icon({
+                    iconUrl: './icons/leaf.png',
+                    ...defaultIconOptions
+                })
+            case 'restaurants':
+                return L.icon({
+                    iconUrl: './icons/leaf.png',
+                    ...defaultIconOptions
+                })
+            case 'retail':
+                return L.icon({
+                    iconUrl: './icons/retail.png',
+                    ...defaultIconOptions
+                })
+            case 'shops & services':
+                return L.icon({
+                    iconUrl: './icons/shop.png',
+                    ...defaultIconOptions
+                })
+            default:
+                return L.icon({
+                    iconUrl: './icons/blank.png',
+                    ...defaultIconOptions
+                })
+        }
     }
-
-
-    //cafe
-    if(text.includes('cafe')){
-        if(text2.includes('bakery')) return  'cake'
-        return 'local_cafe'
-    }
-
-    //laundromat
-    if(text.includes('laundromat')) return 'local_laundry_service'
-
-    if(text.includes('specialty')){
-        if(text2.includes('hardware')) return 'build'
-        if(text2.includes('pet')) return 'pet'
-        if(text2.includes('wine') || text2.includes('beer')) return 'local_bar'
-        if(text2.includes('shipping')) return 'local_shipping'
-        return 'redeem'
-    }
-
-    return 'storefront'
 }

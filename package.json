@@ -27,7 +27,6 @@
     "bulma": "^0.8.1",
     "drive-db": "^6.0.0",
     "fuse.js": "^5.1.0",
-    "leaflet-iconmaterial": "^1.0.1",
     "sirv-cli": "^0.4.4",
     "whatwg-fetch": "^3.0.0"
   }
