@@ -20,6 +20,13 @@
 </script>
 
 <main>
+    <h3 class="title is-3">What's Open In The East Village Area During COVID-19?</h3>
+    <div class="info">
+        <p class="is-6">
+            <strong>A directory of essential businesses that are open in the East Village area during
+                COVID-19. </strong>
+        </p>
+    </div>
     <Filters/>
     <div class="panel">
         <div class="panel-left">
@@ -33,15 +40,15 @@
             <MapView/>
         </div>
     </div>
-    <!--        <Footer/>-->
+    <Footer/>
 </main>
 
 <style>
     main {
-        margin: 40px auto;
+        margin: 20px auto;
         max-width: 1500px;
         color: #444;
-        padding: 0 10px;
+        padding: 0 25px;
     }
 
     .panel {
