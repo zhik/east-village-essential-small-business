@@ -21,12 +21,10 @@
 
 <main>
     <h3 class="title is-3">What's Open In The East Village Area During COVID-19?</h3>
-    <div class="info">
-        <p class="is-6">
-            <strong>A directory of essential businesses that are open in the East Village area during
-                COVID-19. </strong>
-        </p>
-    </div>
+    <p class="is-6 subtitle">
+        <strong>A directory of essential businesses that are open in the East Village area during
+            COVID-19. </strong>
+    </p>
     <Filters/>
     <div class="panel">
         <div class="panel-left">
