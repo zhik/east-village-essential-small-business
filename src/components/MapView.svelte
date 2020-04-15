@@ -6,7 +6,7 @@
     let map
     let layer
 
-    function generateLayer(data, filter = () => true){
+    function generateLayer(data, filter = () => true) {
         return L.geoJSON(data, {
             pointToLayer: feature => feature.properties.icon,
             onEachFeature: (feature, layer) => {
@@ -20,13 +20,16 @@
 
     onMount(() => {
         const maxZoom = 20
+        const minZoom = 14
+        const bounds = L.latLngBounds([40.708, -74.02], [40.743, -73.961]);
 
-        map = L.map(container, {maxZoom}).setView([40.7268, -73.9835], 15)
+
+        map = L.map(container, {maxZoom, minZoom}).setView([40.7268, -73.9835], 15)
         // map.scrollWheelZoom.disable()
 
         L.tileLayer(
                 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/light_all/{z}/{x}/{y}{r}.png',
-                {maxZoom}
+                {maxZoom, minZoom, bounds}
         ).addTo(map)
 
         //add map to store
@@ -38,7 +41,7 @@
     }
 
     $: {
-        if(map && layer){
+        if (map && layer) {
             //update layer when filter functions changes
             map.removeLayer(layer);
             layer = generateLayer($data, feature => $filters.every(filter => filter(feature))).addTo(map);

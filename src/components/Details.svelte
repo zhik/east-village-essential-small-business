@@ -79,16 +79,16 @@
 
         {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization || $details.supportyourfavoriteevmerchantorganizationsfundraiser}
             <hr>
-            <div class="field is-grouped is-grouped-multiline">
+            <div class="field is-grouped is-grouped-multiline support">
                 <div class="tags">
                     {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization}
-                        <a href="{$details.buyagiftcardtosupportyourfavoriteevmerchantorganization}"><span
-                                class="tag is-link">Buy a GIFTCARD to support this business!</span></a>
+                        <a href="{getValidUrl($details.buyagiftcardtosupportyourfavoriteevmerchantorganization)}"><span
+                                target="_blank" class="tag is-link">Buy a GIFTCARD to support this business!</span></a>
                     {/if}
 
                     {#if $details.supportyourfavoriteevmerchantorganizationsfundraiser}
-                        <a href="{$details.supportyourfavoriteevmerchantorganizationsfundraiser}"><span
-                                class="tag is-link">Contribute to this business's FUNDRAISER!</span></a>
+                        <a href="{getValidUrl($details.supportyourfavoriteevmerchantorganizationsfundraiser)}"><span
+                                target="_blank" class="tag is-link">Contribute to this business's FUNDRAISER!</span></a>
                     {/if}
                 </div>
             </div>
@@ -99,7 +99,8 @@
         <p class="has-text-grey-light">Last Updated: {$details.dateupdated} ID: {$details.id}</p>
         <NotEmpty value={$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}>
             <p>Source: <a
-                    href="{$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}">Click
+                    href="{getValidUrl($details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses)}"
+                    target="_blank">Click
                 here</a></p>
         </NotEmpty>
     </div>
@@ -117,5 +118,9 @@
 
     .margin p {
         margin-right: 1rem;
+    }
+
+    .support .tag {
+        margin-right: 5px;
     }
 </style>

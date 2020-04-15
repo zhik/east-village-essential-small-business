@@ -2,8 +2,8 @@ import ICONS from './icons'
 
 const defaultIconOptions = {
     shadowUrl: './icons/shadow.png',
-    iconSize:     [32, 37], // size of the icon
-    shadowSize:   [51 ,37], // size of the shadow
+    iconSize:     [30, 32], // size of the icon
+    shadowSize:   [40 ,27], // size of the shadow
     iconAnchor:   [32, 37], // point of the icon which will correspond to marker's location
     shadowAnchor: [32, 37],  // the same for the shadow
     popupAnchor:  [-16, -10] // point from which the popup should open relative to the iconAnchor
