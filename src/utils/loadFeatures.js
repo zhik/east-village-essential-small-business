@@ -2,7 +2,11 @@ import getIcons  from "./getIcons";
 
 function loadFeatures(db) {
     const validFeatures = db.filter(feature => feature.longitude && feature.latitude)
-    const openFeatures = validFeatures.filter(feature => feature["openfortakeoutordeliveryorshippingynunknown-autopopulatesdonotfilloutplease"] !== 'Closed')
+    
+    const openFeatures = validFeatures.filter(feature => {
+        const status = feature["openfortakeoutordeliveryorshippingynunknown-autopopulatesdonotfilloutplease"]
+        return !['Unknown','Closed'].includes(status)
+    })
     console.log(`${openFeatures.length} rows loaded.`)
 
     const features = openFeatures.map(feature => {
