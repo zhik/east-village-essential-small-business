@@ -1,4 +1,5 @@
 import App from './App.svelte'
+import './i18n.js'
 
 //polyfill
 import 'whatwg-fetch'

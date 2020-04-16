@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import postcss from 'rollup-plugin-postcss'
 import babel from 'rollup-plugin-babel'
+import json from '@rollup/plugin-json';
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -37,6 +38,7 @@ export default {
     }),
     postcss(),
     commonjs(),
+    json(),
     production &&
       babel({
         extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -68,7 +70,7 @@ export default {
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    production && terser(),
   ],
   watch: {
     clearScreen: false

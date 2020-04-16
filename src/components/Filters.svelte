@@ -1,4 +1,5 @@
 <script>
+    import { _ } from 'svelte-i18n'
     import {data, filters} from '../stores'
     import GeneralSearch from './GeneralSearch.svelte'
     import {capitalizeFirstLetter} from '../utils/textFormating'
@@ -129,7 +130,7 @@
 
 <GeneralSearch {textSearch}/>
 
-<CategoryFilter name="Categories" categories={overallCategoryItems}
+<CategoryFilter name={$_('category_filter_header')} categories={overallCategoryItems}
                 on:update={e => overallCategoryItems = e.detail} {customColors}/>
 
 <br>
