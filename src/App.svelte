@@ -1,5 +1,6 @@
 <script>
     import {onMount} from 'svelte'
+    import { _ } from 'svelte-i18n'
     import {data} from './stores'
     import 'bulma/css/bulma.css'
     import loadFeatures from './utils/loadFeatures'
@@ -20,10 +21,9 @@
 </script>
 
 <main>
-    <h3 class="title is-3">What's Open In The East Village Area During COVID-19?</h3>
+    <h3 class="title is-3">{$_('site_header.title')}</h3>
     <p class="is-6 subtitle">
-        <strong>A directory of essential businesses that are open in the East Village area during
-            COVID-19. </strong>
+        <strong>{$_('site_header.subtitle')}</strong>
     </p>
     <Filters/>
     <div class="panel">

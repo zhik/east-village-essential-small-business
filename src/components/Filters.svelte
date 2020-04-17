@@ -77,17 +77,17 @@
 
     let optionItems = [
         {
-            name: 'Takeout',
+            name: $_('filters.options.takeout'),
             selected: false,
             filter: feature => feature.properties.takeoutyorn.toUpperCase() === 'Y'
         },
         {
-            name: 'Delivery',
+            name: $_('filters.options.delivery'),
             selected: false,
             filter: feature => feature.properties.deliveryyorn.toUpperCase() === 'Y'
         },
         {
-            name: 'Shipping',
+            name: $_('filters.options.shipping'),
             selected: false,
             filter: feature => feature.properties.shippingyorn.toUpperCase() === 'Y'
         },
@@ -130,16 +130,16 @@
 
 <GeneralSearch {textSearch}/>
 
-<CategoryFilter name={$_('category_filter_header')} categories={overallCategoryItems}
+<CategoryFilter name={$_('filters.categories')} categories={overallCategoryItems}
                 on:update={e => overallCategoryItems = e.detail} {customColors}/>
 
 <br>
 
-<CategoryFilter name="Sub-Categories" categories={subCategoryItems} showAfter={1}
+<CategoryFilter name={$_('filters.subcategories')} categories={subCategoryItems} showAfter={1}
                 on:update={e => subCategoryItems = e.detail}/>
 
 <br>
 
-<OptionFilter name="Options" options={optionItems} on:update={e => optionItems = e.detail}/>
+<OptionFilter name={$_('filters.options.title')} options={optionItems} on:update={e => optionItems = e.detail}/>
 
 <br>

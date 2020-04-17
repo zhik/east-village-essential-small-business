@@ -1,4 +1,5 @@
 <script>
+    import { _ } from 'svelte-i18n'
     import {details} from '../stores'
     import NotEmpty from './details/NotEmpty.svelte'
     import {getValidUrl, getValidInstagram} from '../utils/getValidUrl'
@@ -12,7 +13,7 @@
         <hr/>
 
         <NotEmpty value={$details.address}>
-            <p><strong>Address:</strong> {$details.address}</p>
+            <p><strong>{$_('details.address')}:</strong> {$details.address}</p>
         </NotEmpty>
 
 
@@ -24,7 +25,7 @@
         <div class="field is-grouped margin">
             <NotEmpty value={$details.websiteownerrundeliverypreferred}>
                 <p><strong><a href="{getValidUrl($details.websiteownerrundeliverypreferred)}"
-                              target="_blank">Website</a></strong></p>
+                              target="_blank">{$_('details.website')}</a></strong></p>
             </NotEmpty>
 
             <NotEmpty value={$details.instagramfulllinknothandle}>
@@ -36,14 +37,14 @@
         <hr/>
         <NotEmpty show={$details.opentime && $details.closetime}>
             <h5 class="is-5">Hours</h5>
-            <p><strong>Open Time:</strong> {$details.opentime}</p>
-            <p><strong>Close Time:</strong> {$details.closetime}</p>
+            <p><strong>{$_('details.open_time')}</strong> {$details.opentime}</p>
+            <p><strong>{$_('details.close_time')}</strong> {$details.closetime}</p>
         </NotEmpty>
 
         <div class="field is-grouped is-grouped-multiline">
             <div class="control">
                 <div class="tags has-addons">
-                    <span class="tag">Takeout</span>
+                    <span class="tag">{$_('details.takeout')}</span>
                     <span class="tag {$details.takeoutyorn === 'Y'  ? 'is-success' : 'is-white'}">
                         {$details.takeoutyorn === 'Y' ? 'Yes' : '-'}
                     </span>
@@ -53,7 +54,7 @@
 
             <div class="control">
                 <div class="tags has-addons">
-                    <span class="tag">Delivery</span>
+                    <span class="tag">{$_('details.delivery')}</span>
                     <span class="tag {$details.deliveryyorn === 'Y'  ? 'is-success' : 'is-white'}">
                         {$details.deliveryyorn === 'Y' ? 'Yes' : '-'}
                     </span>
@@ -63,7 +64,7 @@
             <NotEmpty value={$details.shippingyorn} show={$details.shippingyorn === 'Y'}>
                 <div class="control">
                     <div class="tags has-addons">
-                        <span class="tag">Shipping</span>
+                        <span class="tag">{$_('details.shipping')}</span>
                         <span class="tag {$details.shippingyorn === 'Y'  ? 'is-success' : 'is-white'}">
                         {$details.shippingyorn === 'Y' ? 'Yes' : '-'}
                     </span>
@@ -74,7 +75,7 @@
 
 
         <NotEmpty value={$details.notes}>
-            <p><strong>Notes: </strong>{$details.notes}</p>
+            <p><strong>$_('details.notes')}: </strong>{$details.notes}</p>
         </NotEmpty>
 
         {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization || $details.supportyourfavoriteevmerchantorganizationsfundraiser}
@@ -83,12 +84,12 @@
                 <div class="tags">
                     {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization}
                         <a href="{getValidUrl($details.buyagiftcardtosupportyourfavoriteevmerchantorganization)}"><span
-                                target="_blank" class="tag is-link">Buy a GIFTCARD to support this business!</span></a>
+                                target="_blank" class="tag is-link">{$_('details.buy_a_giftcard')}</span></a>
                     {/if}
 
                     {#if $details.supportyourfavoriteevmerchantorganizationsfundraiser}
                         <a href="{getValidUrl($details.supportyourfavoriteevmerchantorganizationsfundraiser)}"><span
-                                target="_blank" class="tag is-link">Contribute to this business's FUNDRAISER!</span></a>
+                                target="_blank" class="tag is-link">{$_('details.contribute_to_fundraiser')}</span></a>
                     {/if}
                 </div>
             </div>
@@ -106,7 +107,7 @@
     </div>
 {:else}
     <div class="content has-background-ter">
-        <h4 class="is-4">Click on a point for more details</h4>
+        <h4 class="is-4">{$_('details.click_on_a_point')}</h4>
     </div>
 {/if}
 

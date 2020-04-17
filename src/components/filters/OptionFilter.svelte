@@ -1,5 +1,6 @@
 <script>
     import {createEventDispatcher} from 'svelte';
+    import { _ } from 'svelte-i18n'
 
     const dispatch = createEventDispatcher();
 
@@ -25,7 +26,7 @@
 
 
 <div class="filter-header"><h6 class="is-6">{name}:</h6>
-    <button class="button is-small {anyOptions ? 'is-info' : ''}" on:click={resetOptionItems}>Any</button>
+    <button class="button is-small {anyOptions ? 'is-info' : ''}" on:click={resetOptionItems}>{$_('filters.options.any')}</button>
 </div>
 <div class="filter-container">
     {#each options as item, name}
