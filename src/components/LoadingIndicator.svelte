@@ -1,10 +1,11 @@
 <script>
   //from https://github.com/tobiasahlin/SpinKit
+  import { _ } from 'svelte-i18n'
 </script>
 
 <div class="loading-box">
   <div class="spinner"></div>
-  <p>loading layers..</p>
+  <p>{$_('loading')}</p>
 </div>
 
 <style>

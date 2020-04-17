@@ -1,4 +1,5 @@
 <script>
+    import { _ } from 'svelte-i18n'
     import {mapView, data, details} from '../stores'
     import SearchItem from './search/SearchItem.svelte'
     import Fuse from 'fuse.js'
@@ -66,7 +67,7 @@
 <form on:submit|preventDefault="{_set(searchAddrs[0])}">
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Search by name</label>
+            <label class="label">{$_('search.search_by_name')}</label>
         </div>
         <div class="field-body">
             <div class="field">
@@ -83,12 +84,12 @@
                     />
                 </div>
             </div>
-            <button type="submit" class="button">Search</button>
+            <button type="submit" class="button">{$_('search.search_button')}</button>
         </div>
     </div>
     {#if error}
         <p class="help is-danger">
-            No addresses found
+            {$_('search.no_addresses_found_error')}
         </p>
     {/if}
 
