@@ -17,8 +17,8 @@
         },
 
         'laundromat': {
-            selectedColor: '#308528',
-            color: '#accea9'
+            selectedColor: '#681a16',
+            color: '#A47573'
         },
         'restaurants': {
             selectedColor: '#eb6565',
