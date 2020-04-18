@@ -48,7 +48,7 @@
             const categories = new Set($data.features.map(feature => feature.properties.overallcategory))
             //sort by customColors's order
             const order = Object.keys(customColors)
-            const unique = Array.from(categories).map(item => [order.indexOf(item), item])
+            const unique = Array.from(categories).map(item => [order.indexOf(item.toLowerCase().trim()), item])
                     .sort().map(arr => capitalizeFirstLetter(arr[1]))
             overallCategoryItems = unique.filter(item => item.length > 0).map(item => ({
                 name: item,
