@@ -17,7 +17,8 @@
   "search": {
     "search_by_name": "Search by name",
     "search_button": "Search",
-    "no_addresses_found_error": "No addresses found"
+    "no_addresses_found_error": "No businesses found",
+    "search_placeholder": "Search by name here"
   },
   "loading": "Loading layers...",
   "details": {

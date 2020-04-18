@@ -74,7 +74,7 @@
                 <div class="control is-expanded">
                     <input
                             id="address"
-                            placeholder="Tompkins Square Park"
+                            placeholder="{$_('search.search_placeholder')}"
                             type="text"
                             name="address"
                             bind:value
@@ -87,11 +87,6 @@
             <button type="submit" class="button">{$_('search.search_button')}</button>
         </div>
     </div>
-    {#if error}
-        <p class="help is-danger">
-            {$_('search.no_addresses_found_error')}
-        </p>
-    {/if}
 
     {#if searchAddrs.length}
         <ul>
@@ -100,6 +95,12 @@
             {/each}
         </ul>
     {/if}
+    {#if searchAddrs.length === 0 && value !== ''}
+        <p class="help is-danger">
+            {$_('search.no_addresses_found_error')}
+        </p>
+    {/if}
+
 </form>
 
 <style>
@@ -127,5 +128,10 @@
         color: rgb(61, 61, 61);
         margin: 0px !important;
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    ::placeholder {
+        color: #4d4d4d;
+        font-weight: 300;
     }
 </style>
