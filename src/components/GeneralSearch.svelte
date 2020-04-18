@@ -95,11 +95,11 @@
             {/each}
         </ul>
     {/if}
-    {#if searchAddrs.length === 0 && value !== ''}
-        <p class="help is-danger">
-            {$_('search.no_addresses_found_error')}
-        </p>
-    {/if}
+<!--    {#if searchAddrs.length === 0 && value !== ''}-->
+<!--        <p class="help is-danger">-->
+<!--            {$_('search.no_addresses_found_error')}-->
+<!--        </p>-->
+<!--    {/if}-->
 
 </form>
 
