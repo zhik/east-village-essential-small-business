@@ -1,5 +1,6 @@
 <script>
     import { _ } from 'svelte-i18n'
+    import marked from 'marked';
     import {details} from '../stores'
     import NotEmpty from './details/NotEmpty.svelte'
     import {getValidUrl, getValidInstagram} from '../utils/getValidUrl'
@@ -75,7 +76,7 @@
 
 
         <NotEmpty value={$details.notes}>
-            <p><strong>$_('details.notes')}: </strong>{$details.notes}</p>
+            <p><strong>{$_('details.notes')}: </strong>{@html marked($details.notes)}</p>
         </NotEmpty>
 
         {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization || $details.supportyourfavoriteevmerchantorganizationsfundraiser}
