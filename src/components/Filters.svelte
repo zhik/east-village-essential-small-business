@@ -1,5 +1,5 @@
 <script>
-    import { _ } from 'svelte-i18n'
+    import {_} from 'svelte-i18n'
     import {data, filters} from '../stores'
     import GeneralSearch from './GeneralSearch.svelte'
     import {capitalizeFirstLetter} from '../utils/textFormating'
@@ -7,10 +7,6 @@
     import OptionFilter from './filters/OptionFilter.svelte'
 
     const customColors = {
-        'dessert': {
-            selectedColor: '#9c27b0',
-            color: '#d7a8df'
-        },
         'groceries': {
             selectedColor: '#0288d1',
             color: '#99cfec'
@@ -19,6 +15,7 @@
             selectedColor: '#7cb342',
             color: '#cae0b3'
         },
+
         'laundromat': {
             selectedColor: '#308528',
             color: '#accea9'
@@ -26,6 +23,10 @@
         'restaurants': {
             selectedColor: '#eb6565',
             color: '#f7c1c1'
+        },
+        'dessert': {
+            selectedColor: '#9c27b0',
+            color: '#d7a8df'
         },
         'retail': {
             selectedColor: '#fff35f',
@@ -44,8 +45,11 @@
     $: {
         //init filters
         if ($data && $data.features.length > 0) {
-            const categories = new Set($data.features.map(feature => capitalizeFirstLetter(feature.properties.overallcategory)))
-            const unique = Array.from(categories).sort()
+            const categories = new Set($data.features.map(feature => feature.properties.overallcategory))
+            //sort by customColors's order
+            const order = Object.keys(customColors)
+            const unique = Array.from(categories).map(item => [order.indexOf(item), item])
+                    .sort().map(arr => capitalizeFirstLetter(arr[1]))
             overallCategoryItems = unique.filter(item => item.length > 0).map(item => ({
                 name: item,
                 selected: false
