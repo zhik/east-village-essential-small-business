@@ -98,12 +98,11 @@
 
         <hr>
 
-        <p class="has-text-grey-light">Last Updated: {$details.dateupdated} ID: {$details.id}</p>
+        <p class="has-text-grey-light">{$_('details.last_updated', {values: { lastUpdated: $details.dateupdated} })} ID: {$details.id}</p>
         <NotEmpty value={$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}>
-            <p>Source: <a
-                    href="{getValidUrl($details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses)}"
-                    target="_blank">Click
-                here</a></p>
+            <p>{@html $_('details.source_link', { values: {
+                url: getValidUrl($details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses)
+            }})}</p>
         </NotEmpty>
     </div>
 {:else}
