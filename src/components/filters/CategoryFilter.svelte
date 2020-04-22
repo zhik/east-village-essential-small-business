@@ -29,9 +29,19 @@
         dispatch('update', updatedCategories)
     }
 
-    function getCustomColor(item) {
+    function getCustomColor(name, type = 'selectedColor'){
+        //check if CustomColor for the category exist
+        const category = name.toLowerCase()
+        if(category in customColors){
+            return customColors[category][type]
+        }else{
+            type ===  'selectedColor' ? '#c7c7c7' : '#929292'
+        }
+    }
+
+    function getBorderColor(item) {
         return `
-            border-bottom: 5px solid ${item.selected ? customColors[item.name.toLowerCase()].selectedColor : customColors[item.name.toLowerCase()].color};
+            border-bottom: 5px solid ${item.selected ? getCustomColor(item.name, 'selectedColor') : getCustomColor(item.name, 'color')};
         `
     }
 
@@ -48,7 +58,7 @@
         {#each categories as item, name}
             {#if customColors}
                 <button class="button is-small"
-                        style={getCustomColor(item)}
+                        style={getBorderColor(item)}
                         on:click={toggleCategoryItem(item)}>{item.name}</button>
             {:else}
                 <button class="button is-small {item.selected ? 'is-info' : ''}"
