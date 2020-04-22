@@ -37,8 +37,8 @@
             color: '#f9d5b2'
         },
         'free food': {
-            selectedColor: '#319012',
-            color: '#6EB159'
+            selectedColor: '#12ba96',
+            color: '#8be3cc'
         }
     }
 
