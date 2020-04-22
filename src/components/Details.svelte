@@ -1,8 +1,9 @@
 <script>
-    import { _ } from 'svelte-i18n'
-    import marked from 'marked';
+    import {_} from 'svelte-i18n'
     import {details} from '../stores'
     import NotEmpty from './details/NotEmpty.svelte'
+    import MarkdownField from './details/MarkdownField.svelte'
+
     import {getValidUrl, getValidInstagram} from '../utils/getValidUrl'
     import {formatPhoneNumber} from '../utils/textFormating'
 </script>
@@ -74,13 +75,16 @@
             </NotEmpty>
         </div>
 
+        <MarkdownField title={$_('details.notes')} content={$details.notes}/>
 
-        <NotEmpty value={$details.notes}>
-            <p><strong>{$_('details.notes')}: </strong>{@html marked($details.notes)}</p>
-        </NotEmpty>
-
-        {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization || $details.supportyourfavoriteevmerchantorganizationsfundraiser}
+        {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization ||
+            $details.supportyourfavoriteevmerchantorganizationsfundraiser ||
+            $details.giftcardfundraiser ||
+            $details.specialoffers
+        }
             <hr>
+            <MarkdownField title={$_('details.giftcardfundraiser')} content={$details.giftcardfundraiser}/>
+            <MarkdownField title={$_('details.specialoffers')} content={$details.specialoffers}/>
             <div class="field is-grouped is-grouped-multiline support">
                 <div class="tags">
                     {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization}
@@ -98,10 +102,11 @@
 
         <hr>
 
-        <p class="has-text-grey-light">{$_('details.last_updated', {values: { lastUpdated: $details.dateupdated} })} ID: {$details.id}</p>
+        <p class="has-text-grey-light">{$_('details.last_updated', {values: { lastUpdated: $details.dateupdated} })}
+            ID: {$details.id}</p>
         <NotEmpty value={$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}>
             <p>{@html $_('details.source_link', { values: {
-                url: getValidUrl($details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses)
+            url: getValidUrl($details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses)
             }})}</p>
         </NotEmpty>
     </div>
