@@ -1,6 +1,6 @@
 <script>
     import {onMount} from 'svelte'
-    import { _ } from 'svelte-i18n'
+    import { _, locale } from 'svelte-i18n'
     import {data} from './stores'
     import 'bulma/css/bulma.css'
     import loadFeatures from './utils/loadFeatures'
@@ -21,6 +21,11 @@
 </script>
 
 <main>
+    <div class="language-buttons">
+        <button class="language-button" on:click={() => locale.set('en')}>English</button>
+        <button class="language-button" on:click={() => locale.set('es')}>Español</button>
+        <button class="language-button" on:click={() => locale.set('zh')}>中文</button>
+    </div>
     <h3 class="title is-3">{$_('site_header.title')}</h3>
     <p class="is-6 subtitle">
         <strong>{$_('site_header.subtitle')}</strong>
@@ -74,5 +79,22 @@
         padding: 0.5rem 1rem;
         margin-bottom: 1rem;
     }
+
+    .language-buttons {
+        display: none;
+        margin-bottom: 1rem;
+    }
+
+    .language-button {
+        display: inline-block;
+        display: none;
+        border: none;
+        font-family: 'Merriweather', serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #3273dc;
+        cursor: pointer;
+    }
+
 
 </style>
