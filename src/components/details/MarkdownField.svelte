@@ -1,17 +1,14 @@
 <script>
     import marked from 'marked';
-    import NotEmpty from './NotEmpty.svelte'
 
     export let title = ''
     export let content = ''
-    export let hideWhenEmpty = true
+    export let isEmpty = content.trim().length === 0
 
 </script>
 
-{#if hideWhenEmpty }
-    <NotEmpty value={content}>
-        <p><strong>{title}: </strong>{@html marked(content)}</p>
-    </NotEmpty>
+{#if isEmpty }
+
 {:else}
     <p><strong>{title}: </strong>{@html marked(content)}</p>
 {/if}
