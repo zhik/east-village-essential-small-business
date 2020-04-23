@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "bulma": "^0.8.1",
+    "dompurify": "^2.0.9",
     "drive-db": "^6.0.0",
     "fuse.js": "^5.1.0",
     "marked": "^0.8.2",

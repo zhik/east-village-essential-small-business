@@ -1,5 +1,6 @@
 <script>
     import marked from 'marked';
+    import DOMPurify from 'dompurify'
 
     export let title = ''
     export let content = ''
@@ -10,5 +11,5 @@
 {#if isEmpty }
 
 {:else}
-    <p><strong>{title}: </strong>{@html marked(content)}</p>
+    <p><strong>{title}: </strong>{@html DOMPurify.sanitize(marked(content))}</p>
 {/if}
