@@ -35,6 +35,10 @@
         'shops & services': {
             selectedColor: '#f2983f',
             color: '#f9d5b2'
+        },
+        'free food': {
+            selectedColor: '#12ba96',
+            color: '#8be3cc'
         }
     }
 

@@ -73,6 +73,11 @@ function iconLookup(overall, sub){
                     iconUrl: './icons/shop.png',
                     ...defaultIconOptions
                 })
+            case 'free food':
+                return L.icon({
+                    iconUrl: './icons/hotfood.png',
+                    ...defaultIconOptions
+                })
             default:
                 return L.icon({
                     iconUrl: './icons/blank.png',
