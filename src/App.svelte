@@ -24,7 +24,8 @@
     <div class="language-buttons">
         <button class="language-button" on:click={() => locale.set('en')}>English</button>
         <button class="language-button" on:click={() => locale.set('es')}>Español</button>
-        <button class="language-button" on:click={() => locale.set('zh')}>中文</button>
+        <button class="language-button" on:click={() => locale.set('zh-Hans')}>简体</button>
+        <button class="language-button" on:click={() => locale.set('zh-Hant')}>繁体</button>
     </div>
     <h3 class="title is-3">{$_('site_header.title')}</h3>
     <p class="is-6 subtitle">
@@ -81,13 +82,13 @@
     }
 
     .language-buttons {
-        display: none;
+        /*display: none;*/
         margin-bottom: 1rem;
     }
 
     .language-button {
-        display: inline-block;
-        display: none;
+        /*display: inline-block;*/
+        /*display: none;*/
         border: none;
         font-family: 'Merriweather', serif;
         font-size: 1rem;
