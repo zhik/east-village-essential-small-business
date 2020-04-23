@@ -21,7 +21,7 @@
       "delivery": "外送",
       "shipping": "邮寄"
     },
-    "subcategories": "Sub-Categories"
+    "subcategories": "子类别"
   },
   "search": {
     "search_by_name": "按名称搜索",
@@ -35,11 +35,12 @@
     "takeout": "外卖",
     "delivery": "外送",
     "shipping": "邮寄",
-    "buy_a_giftcard": "买个礼品卡来支持这个商户" ,
-    "contribute_to_fundraiser":"参加啊这个商户的筹款活动" ,
+    "buy_a_giftcard": "买个礼品卡来支持这个商户",
+    "contribute_to_fundraiser": "参加啊这个商户的筹款活动",
     "last_updated": "最后更新: {lastUpdated}",
-    "source_link": "Source: 来源 <a href=\"{url}\" target=\"_blank\">按这里</a>",
-    "click_on_a_point": "Click on a point for more details",
+    "source_link":
+      "Source: 来源 <a href=\"{url}\" target=\"_blank\">按这里</a>",
+    "click_on_a_point": "点击查看更多详情",
     "notes": "提醒",
     "address": "地址",
     "open_time": "营业",
