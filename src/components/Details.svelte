@@ -77,27 +77,10 @@
 
         <MarkdownField title={$_('details.notes')} content={$details.notes}/>
 
-        {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization ||
-            $details.supportyourfavoriteevmerchantorganizationsfundraiser ||
-            $details.giftcardfundraiser ||
-            $details.specialoffers
-        }
+        {#if $details.giftcardfundraiser ||$details.specialoffers }
             <hr>
             <MarkdownField title={$_('details.giftcardfundraiser')} content={$details.giftcardfundraiser}/>
             <MarkdownField title={$_('details.specialoffers')} content={$details.specialoffers}/>
-            <div class="field is-grouped is-grouped-multiline support">
-                <div class="tags">
-                    {#if $details.buyagiftcardtosupportyourfavoriteevmerchantorganization}
-                        <a href="{getValidUrl($details.buyagiftcardtosupportyourfavoriteevmerchantorganization)}"><span
-                                target="_blank" class="tag is-link">{$_('details.buy_a_giftcard')}</span></a>
-                    {/if}
-
-                    {#if $details.supportyourfavoriteevmerchantorganizationsfundraiser}
-                        <a href="{getValidUrl($details.supportyourfavoriteevmerchantorganizationsfundraiser)}"><span
-                                target="_blank" class="tag is-link">{$_('details.contribute_to_fundraiser')}</span></a>
-                    {/if}
-                </div>
-            </div>
         {/if}
 
         <hr>
