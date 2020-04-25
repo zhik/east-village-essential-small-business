@@ -45,5 +45,8 @@
     "address": "地址",
     "open_time": "營業",
     "close_time": "關門"
+  },
+  "map":{
+    "top": "上"
   }
 }

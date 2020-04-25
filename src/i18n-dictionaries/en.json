@@ -37,5 +37,8 @@
     "address": "Address",
     "open_time": "Open time",
     "close_time": "Close time"
+  },
+  "map":{
+    "top": "Top"
   }
 }

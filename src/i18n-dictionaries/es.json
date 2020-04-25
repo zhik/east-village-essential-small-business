@@ -46,5 +46,8 @@
     "address": "Dirección",
     "open_time": "Tiempo abierto",
     "close_time": "Hora de cierre"
+  },
+  "map":{
+    "top": "Cabeza"
   }
 }

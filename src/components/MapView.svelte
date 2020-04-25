@@ -1,6 +1,7 @@
 <script>
     import {onMount} from 'svelte'
     import {mapView, data, details, filters} from '../stores'
+    import { _ } from 'svelte-i18n'
 
     let container
     let map
@@ -50,15 +51,43 @@
         }
     }
 
+    function scrollTop(){
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
 
 </script>
 
-<div id="map" bind:this="{container}"></div>
+<div class="map-container">
+    <div id="map" bind:this="{container}"></div>
+    <button class="button is-rounded" on:click={scrollTop}>{$_('map.top')}</button>
+
+</div>
 
 <style>
+    .map-container {
+        width: 100%;
+        height: 100%;
+    }
+
     #map {
         width: 100%;
         height: 100%;
+    }
+
+    .button {
+        display: none;
+        position: fixed;
+        right: 35px;
+        bottom: 1rem;
+        z-index: 1001;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .button {
+            display: block;
+        }
     }
 
     :global(.awesome-marker i) {
