@@ -57,14 +57,21 @@
 
     @media only screen and (max-width: 768px) {
         main {
-            padding: 0 35px;
+            padding: 0 35px !important;
+        }
+
+        .panel {
+            min-height: 400px !important;
+        }
+        .panel-right {
+            min-height: 400px !important;
         }
     }
 
     .panel {
         display: flex;
         flex-wrap: wrap;
-        min-height: 400px;
+        min-height: 550px;
     }
 
     .panel-left {
@@ -73,9 +80,9 @@
     }
 
     .panel-right {
-        flex: 1 1 300px;
+        flex: 1 1 398px;
         min-width: 200px;
-        min-height: 400px;
+        min-height: 550px;
     }
 
     :global(.is-1, .is-2, .is-3, .is-4, .is-5, .is-6, .is-7) {
