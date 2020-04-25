@@ -3,9 +3,11 @@
     import {details} from '../stores'
     import HideWhenEmpty from './details/HideWhenEmpty.svelte'
     import MarkdownField from './details/MarkdownField.svelte'
+    import LastUpdate from './details/LastUpdated.svelte'
 
     import {getValidUrl, getValidInstagram} from '../utils/getValidUrl'
     import {formatPhoneNumber} from '../utils/textFormating'
+    import LastUpdated from "./details/LastUpdated.svelte";
 </script>
 
 {#if $details}
@@ -85,13 +87,9 @@
 
         <hr>
 
-        <p class="has-text-grey-light">{$_('details.last_updated', {values: { lastUpdated: $details.dateupdated} })}
-            ID: {$details.id}</p>
-        <HideWhenEmpty value={$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}>
-            <p>{@html $_('details.source_link', { values: {
-            url: getValidUrl($details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses)
-            }})}</p>
-        </HideWhenEmpty>
+        <LastUpdated lastUpdated={$details.dateupdated}
+                     source={$details.sourceofinformationforopenclosedpleaseensurethereisasourceforclosedorgsbusinesses}/>
+
     </div>
 {:else}
     <div class="content has-background-ter">
