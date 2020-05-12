@@ -60,7 +60,7 @@ function iconLookup(overall, sub){
                 })
             case 'restaurants':
                 return L.icon({
-                    iconUrl: './icons/leaf.png',
+                    iconUrl: './icons/food.png',
                     ...defaultIconOptions
                 })
             case 'retail':

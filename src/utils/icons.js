@@ -23,7 +23,7 @@ const ICONS = [
     ['restaurants', 'american', 'food'],
     ['restaurants', 'asian', 'food'],
     ['restaurants', 'austrailian', 'food'],
-    ['restaurants', 'bar', 'bar'],
+    ['restaurants', 'bar', 'bar_coktail'],
     ['restaurants', 'bbq', 'bbq'],
     ['restaurants', 'brazilian', 'food'],
     ['restaurants', 'broth', 'food'],
@@ -65,9 +65,12 @@ const ICONS = [
     ['retail', 'childrens', 'kids'],
     ['retail', 'fashion', 'clothing'],
     ['retail', 'gifts', 'gifts'],
-    ['retail', 'vintage', 'archeological'],
+    ['retail', 'vintage', 'clothing'],
     ['shops & services', 'appliances', 'coldstorage'],
     ['shops & services', 'beer shop', 'beershop'],
+    ['shops & services', 'bicycle shop', 'bicycle_shop'],
+    ['shops & services', 'composting', 'compost'],
+    ['shops & services', 'dollar store', 'dollar'],
     ['shops & services', 'copies', 'printer'],
     ['shops & services', 'furnishing & building materials', 'tools'],
     ['shops & services', 'hardware', 'tools'],
@@ -78,7 +81,12 @@ const ICONS = [
     ['shops & services', 'stationery', 'pens'],
     ['shops & services', 'veterinary services', 'vet'],
     ['shops & services', 'wine shop', 'wine'],
-    ['shops & services', 'yarn shop', 'textiles']
+    ['shops & services', 'yarn shop', 'textiles'],
+    ['shops & services', 'hair', 'hair'],
+    ['shops & services', 'florist', 'flowers'],
+    ['shops & services', 'dive shop', 'snorkeling'],
+    ['shops & services', 'sewing machine repair', 'tailor'],
+    ['shops & services', 'computer & phone repair', 'phones']
 ]
 
 export default ICONS;
