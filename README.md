@@ -1,5 +1,7 @@
 # What's Open In The East Village Area During COVID-19?
 
+Project moved to https://github.com/zhik/whats-open-east-village
+
 A directory of essential businesses that are open in the East Village area during COVID-19. 
 
 ## How to Contribute
